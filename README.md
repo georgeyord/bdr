@@ -33,10 +33,36 @@ To run unit tests:
 ./gradlew clean build test
 ```
 
+To run integration (aka user acceptance or end to end) tests:
+```
+./gradlew integrationTest
+```
+
 ### Run the application
 
 ```
-SPRING_PROFILES_ACTIVE=development ./gradlew bootRun
+./gradlew bootRun
 ```
 
-> open http://localhost:8080/status
+Use cURL to check the endpoint:
+```
+curl -X POST \
+  http://localhost:8080/bid \
+  -H 'Cache-Control: no-cache' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "id": "e7fe51ce4f6376876353ff0961c2cb0d",
+  "app": {
+    "id": "e7fe51ce-4f63-7687-6353-ff0961c2cb0d",
+    "name": "Morecast Weather"
+  },
+  "device": {
+    "os": "Android",
+    "geo": {
+      "country": "USA",
+      "lat": 0,
+      "lon": 0
+    }
+  }
+}'
+```

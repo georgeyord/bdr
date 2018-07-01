@@ -26,6 +26,25 @@ repositories {
 
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
-	runtime('org.springframework.boot:spring-boot-devtools')
+	compile('com.google.guava:guava:25.1-jre')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+sourceSets {
+	integrationTest {
+		java {
+			compileClasspath += main.output
+			compileClasspath += main.compileClasspath
+
+			compileClasspath += test.output
+			compileClasspath += test.compileClasspath
+
+			runtimeClasspath += test.runtimeClasspath
+		}
+	}
+}
+
+task integrationTest(type: Test) {
+	testClassesDir = sourceSets.integrationTest.output.classesDir
+	classpath = sourceSets.integrationTest.runtimeClasspath
 }
