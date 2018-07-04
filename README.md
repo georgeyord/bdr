@@ -1,20 +1,12 @@
-# bdr
-
 ### Prerequisites
 
 - Java 8
 
-### Clone project code
-
-In your projects folder:
-
-```
-git clone https://github.com/georgeyord/bdr.git
-```
+> Or Docker. If you want to go with Docker read the section where it says you hate Java...
 
 ### Import project to IDE
 
-Import as Gradle project
+Import as Gradle project and use Gradle wrapper
 
 
 ### Build for the first time
@@ -30,39 +22,35 @@ To ensure dependencies are downloaded and tests are passing locally:
 To run unit tests:
 
 ```
-./gradlew clean build test
+./gradlew clean test
 ```
 
 To run integration (aka user acceptance or end to end) tests:
 ```
-./gradlew integrationTest
+./gradlew clean integrationTest
 ```
 
-### Run the application
+### Run the application locally
 
 ```
 ./gradlew bootRun
 ```
 
-Use cURL to check the endpoint:
+
+### Run the application locally BUT you hate Java ...
+
+... and you want to run the application without installing Java locally, you can use Docker:
+
 ```
-curl -X POST \
-  http://localhost:8080/bid \
-  -H 'Cache-Control: no-cache' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "id": "e7fe51ce4f6376876353ff0961c2cb0d",
-  "app": {
-    "id": "e7fe51ce-4f63-7687-6353-ff0961c2cb0d",
-    "name": "Morecast Weather"
-  },
-  "device": {
-    "os": "Android",
-    "geo": {
-      "country": "USA",
-      "lat": 0,
-      "lon": 0
-    }
-  }
-}'
+docker run -it --rm \
+    -p 8080:8080 \
+    -v $(pwd):/opt/bdr \
+    -v /tmp/bdr:/root/.gradle \
+    -w=/opt/bdr \
+    java:8 \
+    ./gradlew bootRun
 ```
+
+> Use the same command to run build/test etc by just changing the command found at the ending line
+
+> The second time you run it it will not take long, I promise
