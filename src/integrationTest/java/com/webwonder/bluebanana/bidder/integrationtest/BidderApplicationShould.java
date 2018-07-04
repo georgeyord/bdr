@@ -12,11 +12,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class BidderApplicationShould {
-	@Autowired
-	WebApplicationContext webApplicationContext;
+    @Autowired
+    WebApplicationContext webApplicationContext;
 
-	@Test
-	public void loadApplicationContext() {
-		assertThat(webApplicationContext).isNotNull();
-	}
+    @Test
+    public void loadApplicationContext() {
+        assertThat(webApplicationContext).isNotNull();
+    }
 }
