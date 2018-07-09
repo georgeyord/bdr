@@ -1,4 +1,4 @@
-package com.webwonder.bluebanana.bidder.integrationtest;
+package com.webwonder.atm.integrationtest;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class BidderApplicationShould {
+public class AtmApplicationShould {
 	@Autowired
 	WebApplicationContext webApplicationContext;
 

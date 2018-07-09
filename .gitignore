@@ -27,8 +27,12 @@ hs_err_pid*
 
 
 # Package/Build Files #
+.classpath
+.project
+.settings/
 *.class
 /build/
+/bin/
 /out/
 *.jar
 *.war
